@@ -1,0 +1,104 @@
+<h5>Cadastro de Funcionários</h5>
+<hr />
+<p>
+    Preencha os campos abaixo para incluir um funcionário:
+</p>
+
+<div class="card">
+    <div class="card-body">
+
+        <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <label>Nome do funcionário:</label>
+                    <input type="text" class="form-control" formControlName="nome" />
+                    <span class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
+                        <span *ngIf="form.nome.errors.required">
+                            Por favor, informe o nome do funcionário.
+                        </span>
+                        <span *ngIf="form.nome.errors.pattern">
+                            Por favor, preencha de 6 a 150 caracteres alfabéticos.
+                        </span>
+                    </span>
+                </div>
+                <div class="col-md-4">
+                    <label>CPF:</label>
+                    <input type="text" class="form-control" formControlName="cpf" />
+                    <span class="text-danger" *ngIf="form.cpf.touched && form.cpf.invalid">                        
+                        <span *ngIf="form.cpf.errors?.cpfInvalid">
+                            O valor informado não é um CPF válido, por favor verifique.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <label>Matrícula:</label>
+                    <input type="text" class="form-control" formControlName="matricula" />
+                    <span class="text-danger" *ngIf="form.matricula.touched && form.matricula.invalid">
+                        <span *ngIf="form.matricula.errors.required">
+                            Por favor, informe a matrícula do funcionário.
+                        </span>
+                        <span *ngIf="form.matricula.errors.pattern">
+                            Por favor, preencha 8 caracteres alfanumericos.
+                        </span>
+                    </span>
+                </div>
+                <div class="col-md-4">
+                    <label>Data de admissão:</label>
+                    <input type="date" class="form-control" formControlName="dataAdmissao" />
+                    <span class="text-danger" *ngIf="form.dataAdmissao.touched && form.dataAdmissao.invalid">
+                        <span *ngIf="form.dataAdmissao.errors.required">
+                            Por favor, informe a data de admissão do funcionário.
+                        </span>
+                    </span>
+                </div>
+                <div class="col-md-4">
+                    <label>Salário:</label>
+                    <input type="text" class="form-control" formControlName="salario" />
+                    <span class="text-danger" *ngIf="form.salario.touched && form.salario.invalid">
+                        <span *ngIf="form.salario.errors.required">
+                            Por favor, informe o salário do funcionário.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label>Foto do funcionário:</label>
+                    <input type="file" class="form-control" formControlName="foto" />
+                    <span class="text-danger" *ngIf="form.foto.touched && form.foto.invalid">
+                        <span *ngIf="form.foto.errors.required">
+                            Por favor, informe a foto do funcionário.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label>Observações adicionais:</label>
+                    <textarea class="form-control" formControlName="observacoes"></textarea>
+                    <span class="text-danger" *ngIf="form.observacoes.touched && form.observacoes.invalid">
+                        <span *ngIf="form.observacoes.errors.required">
+                            Por favor, preencha as observações do funcionário.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12 text-end">
+                    <input (click)="reset()" type="button" value="Cancelar" class="btn btn-outline-secondary" />
+                    &nbsp;
+                    <input [disabled]="!formCadastro.valid" type="submit" value="Realizar Cadastro" class="btn btn-success" />
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
